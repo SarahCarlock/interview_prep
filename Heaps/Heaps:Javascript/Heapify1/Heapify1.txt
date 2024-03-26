@@ -1,0 +1,46 @@
+HEAPS: JAVASCRIPT
+Heapify I
+We’ve retrieved the minimum element but left our MinHeap in disarray. There’s no reason to get discouraged; we’ve handled this type of problem before, and we can get our MinHeap back in shape!
+
+We’ll define a method, .heapify(), which performs a similar role to .bubbleUp(), except now we’re moving down the tree instead of up. The current element is a parent that can have either a left child or two children, but not just a right child.
+
+We have written a helper method, .canSwap(), to return true if swapping can occur for either child and false otherwise:
+
+canSwap(current, leftChild, rightChild) {
+  // Check that one of the possible swap conditions exists
+  return (this.exists(leftChild) && this.heap[current] > this.heap[leftChild] 
+  || this.exists(rightChild) && this.heap[current] > this.heap[rightChild]
+    );
+  }
+
+To maintain the min-heap condition, the parent value has to be less than both its child values. To see if a swap is necessary, starting with the left child, we first check that the child exists and then whether the min-heap condition is broken, i.e. the current element has a value greater than that child’s value. If the left child does not break the min-heap condition, the same check is performed on the right child.
+
+Instructions
+Checkpoint 1 Passed
+1.
+Define an empty .heapify() method below .bubbleUp() in MinHeap.
+
+Checkpoint 2 Passed
+2.
+We are going to heapify beginning from the index that always points to the minimum value. Declare a let current which points to index 1.
+
+At this stage, index 1 is pointing to the out-of-place value we swapped in while removing the minimum.
+
+Checkpoint 3 Passed
+3.
+We are going to use .canSwap() as we traverse each element in our heap tree. Since .canSwap() takes 3 arguments: current index, left child index, and right child index, we need to add two more local variables.
+
+Declare two local variables leftChild and rightChild and assign them to their appropriate values.
+Write a while loop that calls .canSwap()
+At the bottom of the while loop, update the leftChild and rightChild to their appropriate values so that the loop will not run infinitely.
+In later exercises, we will continue filling the while loop to restore the heap.
+
+
+Hint
+heapify() {
+  // assign the current index to 1
+  // assign the left child index using a helper method
+  // assign the right child index using a helper method
+  // call canSwap with three indices in a while loop
+  // update the left child index and right child index inside the loop
+}

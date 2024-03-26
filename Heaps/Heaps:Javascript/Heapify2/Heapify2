@@ -1,0 +1,81 @@
+HEAPS: JAVASCRIPT
+Heapify II
+In .bubbleUp(), we were always comparing our element with its parent. In .heapify(), we have potentially two options: the left child and the right child.
+
+Which should we choose? We’ll use an example to think it through. Imagine we have a heap with four elements:
+
+console.log(minHeap.heap)
+// [null, 21, 36, 58, 42]
+minHeap.popMin()
+// 21
+// [null, 42, 36, 58]
+// Should we swap 42 with 36 or 58?
+
+We want to swap with the smaller of the two children, otherwise, we wouldn’t maintain our heap condition!
+
+Instructions
+Checkpoint 1 Passed
+1.
+In .heapify() at the beginning of the while loop, check to see if leftChild and rightChild both exist. Use the helper method .exists() to check for the existence of an element at a particular index.
+
+
+Hint
+To check if an element exists using .exists() try the following:
+
+if (this.exists(element)) {
+}
+
+Checkpoint 2 Passed
+2.
+If both children exist, we need to only swap with the smaller of the two. Inside the if statement that checks for the existence of both children, compare the left child’s value with the right child’s value.
+
+If the left child is smaller than the right child:
+
+swap the current element with the left child
+update the current element index to be the left child
+Otherwise, if the right child is smaller than the left child:
+
+swap the current element with the right child
+update the current element index to be the right child
+Caveat: Executing “Run” may cause an infinite while loop if the if and else statements are left blank or have incorrect content. You can refresh the page to stop it.
+
+
+Hint
+To compare elements in a heap, do something like this:
+
+if (this.heap[index1] < this.heap[index2]) {
+  // statements to follow
+}
+
+To swap two elements with .swap() do the following:
+
+const a = 5, b = 7;
+this.swap(a, b);
+console.log(a, b); // should return 7 5
+
+Checkpoint 3 Passed
+3.
+If only one child exists, it has to be the left child. Write an else block to the outer if statement that:
+
+swaps the current element with the left child, and
+updates the current element index to be the left child
+Caveat: Executing “Run” may cause an infinite while loop if the else statement is left blank or has incorrect content.
+
+
+Hint
+Write your else statement block to correspond to the outer if statement block.
+
+if (this.exists(leftChild) && this.exists(rightChild)) {
+  ...
+} else {
+  // swap the current element and the left child
+  // update the current element index to the left child
+} 
+
+Checkpoint 4 Passed
+4.
+Go back into .popMin() and make a call to .heapify() before we return min.
+
+Checkpoint 5 Passed
+5.
+Open script.js and run the code inside. Study the output to strengthen your understanding of the .heapify() method.

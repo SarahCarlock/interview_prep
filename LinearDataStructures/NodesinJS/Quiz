@@ -1,0 +1,43 @@
+Question 1
+Given the following code, what would be the output of line 3 and why?
+
+const node1 = new Node(5);
+const node2 = new Node(node1);
+node2.getNextNode();
+null
+    When node2 is initialized, it contains no links to the next node.
+    When instances of our Node class are created, they are orphan nodes. The data property is set to the constructor argument, 
+    but the next node is null.
+
+Question 2
+How do you determine if node1 is an orphan Node?
+    There are no nodes that point to it. An orphan Node is one with no pointers to it.
+
+Question 3
+Given that node1 is a Node instance and links to node2, which is another Node instance, how would you remove node1‘s link to node2?
+    node1.setNextNode(null); This removes the link from node1 to node2 and turns node1 into an orphan.
+
+Question 4
+Fill in the code to link together the 3 siblings nodes: youngest -> middle -> oldest.
+
+Then, iterate through the nodes, starting at youngest to get oldest‘s name.
+
+const oldest = new Node('John');
+const middle = new Node('Jacob');
+const youngest = new Node('Jingleheimer');
+
+youngest.setNextNode(middle);
+middle.setNextNode(oldest);
+
+let currentSibling = youngest;
+let oldestName = '';
+while(currentSibling !== null) {
+  oldestName= currentSibling.data;
+  currentSibling= currentSibling.getNextNode();
+}
+
+console.log(`There goes ${oldestName} Schmidt!`);
+
+Question 5
+What properties make a Node useful?
+    data helps to store Information, and next is a link to other Nodes for easier traversal.An

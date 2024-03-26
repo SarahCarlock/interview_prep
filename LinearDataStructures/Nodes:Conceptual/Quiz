@@ -1,0 +1,11 @@
+Question 1
+A node containing only null pointers indicates what?
+    You are at the end of the node path you were following.
+
+Question 2
+Consider the following nodes and links: a -> n -> t. If you want to remove node n, but preserve node t, what should the resulting structure look like?
+    a -> t
+
+Question 3
+Which two features do most nodes contain?
+    Data and links to other nodes.

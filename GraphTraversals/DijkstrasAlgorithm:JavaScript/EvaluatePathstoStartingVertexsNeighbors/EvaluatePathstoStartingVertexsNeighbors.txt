@@ -1,0 +1,46 @@
+DIJKSTRA'S ALGORITHM: JAVASCRIPT
+Evaluate Paths to Starting Vertex’s Neighbors
+We have all of our records set up, so we can start traversing through the graph and evaluating the distances from the starting vertex to its neighbors.
+
+In the evaluation of each neighbor, we compare the distance of the new path to the distance of the previous path. If the distance of the new path is shorter, we will update our records of distances and previous vertices with the new path.
+
+Every time we evaluate an edge between a vertex and its neighbor, the if condition ensures that the record will always maintain the shortest path among the evaluations so far. This is why we can use the previously recorded distance for comparison in our evaluation.
+
+Instructions
+Checkpoint 1 Passed
+1.
+Let’s start evaluating the distances to the starting vertex’s neighbors by iterating through its list of edges.
+
+Right before we return the recorded results, create a const variable, vertex, and set it to startingVertex. Then use a .forEach() iterator to go through the vertex’s list of edges. We will use the edge argument for this iterator.
+
+
+Stuck? Get a hint
+Checkpoint 2 Passed
+2.
+On each iteration through the edges, we are evaluating an alternate path to a different neighbor. The distance of the new path is the sum of the distance from the vertex to the neighbor and the distance from the starting vertex to the vertex.
+
+Inside the .forEach() iterator, create a const variable, alternate, and set it to the sum of the edge’s weight and the value of the vertex’s distance in distances.
+
+
+Stuck? Get a hint
+Checkpoint 3 Passed
+3.
+Now we can compare the distance of the new alternate path to the distance of the last recorded path to the neighbor. The distance of the neighbor’s last recorded path is in the distances object at the neighbor’s data.
+
+Let’s use a variable to hold the key that we will use to access the neighbor’s distance in distances. This will help with code readability.
+
+Still in the .forEach(), create a const variable, neighborValue, and set it to the data property of the neighbor, which is located in the end property of the edge.
+
+Set up an if condition that checks if the alternate distance is shorter than the value at neighborValue in distances.
+
+Checkpoint 4 Passed
+4.
+If the condition is satisfied, then we have found a shorter path and should update the neighbor’s recorded distance and previous vertex.
+
+If the alternate path is shorter, set distances at the neighborValue to the new alternate cost. We also want to set the previous vertex at the neighborValue to vertex.
+
+Checkpoint 5 Passed
+5.
+When we evaluate the distances, we are determining if the path from the starting vertex to the neighbor is shorter than the previously evaluated distance. Since we have not evaluated any paths to the neighbors yet, the previously recorded distances to all of the neighbors is Infinity.
+
+Run the code and look at the output of the function. The shortest paths evaluated so far should be the paths from the starting vertex to its neighbors. In distances we should see the starting vertex with a distance of 0, its neighbors set to the evaluated distances, and all other vertices with Infinity distances. In previous, we should see the neighbors with the starting vertex as their previous vertex, and all other vertices with null.

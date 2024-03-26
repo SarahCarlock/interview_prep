@@ -1,0 +1,51 @@
+HEAPS: JAVASCRIPT
+Bubble Up Part I
+Our MinHeap needs to satisfy two conditions:
+
+The element at index 1 is the minimum value in the entire list.
+Every child element in the list must be larger than its parent.
+Let’s define an .add() method which will allow us to add elements into the .heap array. We will also define .bubbleUp() which will do the work of maintaining the heap conditions as we add additional elements.
+
+Instructions
+Checkpoint 1 Passed
+1.
+Inside MinHeap.js, define a MinHeap class method, .add(), below the constructor to add an element to its heap. Within .add():
+
+define a parameter, value
+add value to end of the array in this.heap
+Optionally, display in .add():
+
+a message showing the value to be added,
+the current content of the heap before method returns
+
+Stuck? Get a hint
+Checkpoint 2 Passed
+2.
+After we added an element to the heap, we want to increase its heap count. Increment the size property by one.
+
+Checkpoint 3 Passed
+3.
+Within script.js, call the .add() method with a value of 42. Run the test code within script.js to see the element 42 added to the heap.
+
+
+Stuck? Get a hint
+Checkpoint 4 Passed
+4.
+Define another MinHeap class method, .bubbleUp(), below .add() whose task is to preserve the heap properties after an element is added to the heap. For now, log a message 'Bubble Up' inside the method.
+
+Checkpoint 5 Passed
+5.
+We want to call .bubbleUp() each time we add an element. Return to the .add() method, and make a call to .bubbleUp()
+
+Checkpoint 6 Passed
+6.
+Rerun the test code in script.js. What do you see as output?
+
+
+Hint
+You should see something like this on the console:
+
+Content of heap [ null ]
+.. Adding 42
+.. Bubble Up
+Content of heap [ null, 42 ]

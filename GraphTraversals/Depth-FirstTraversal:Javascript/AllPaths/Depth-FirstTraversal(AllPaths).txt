@@ -1,0 +1,33 @@
+GRAPH TRAVERSAL: JAVASCRIPT
+Depth-First Traversal (All paths)
+We’ve gotten the hang of traversing down one path, but we want to traverse down all the paths (not just the first possible path). We will modify our existing implementation to iterate down all the other paths by using a .forEach() loop to iterate through all of the start vertex’s edges.
+
+We won’t have to worry about iterating through all the neighbors before going down the neighbor’s first connected vertex. This is because the recursive call occurs before the next iteration of the for loop.
+
+Instructions
+Checkpoint 1 Passed
+1.
+To traverse down all paths, we no longer need the if statement to check if there are edges to traverse. Instead, we will use an iterator to go through all of the vertex’s edges. If there are no edges, then the edges array would be empty and nothing would happen.
+
+Replace the if statement with a .forEach() iterator — but do not replace the entire if block! This .forEach() should iterate through the start vertex’s list of edges. Pass the iterator an anonymous function with one parameter, edge.
+
+Inside the anonymous function, re-assign neighbor to the edge parameter’s end vertex.
+
+The remaining code:
+
+if (!visitedVertices.includes(neighbor)) {
+  visitedVertices.push(neighbor);
+  depthFirstTraversal(neighbor, visitedVertices);
+}
+
+can stay as is, below neighbor and within the anonymous function block.
+
+
+Stuck? Get a hint
+Checkpoint 2 Passed
+2.
+Great, we have completed the depth-first traversal! It iterates down each path until it hits a dead end, continues down the next path at the neighboring vertex until it hits a dead end, and so on.
+
+To see this in action, we have provided you with a sample graph called testGraph and passed it in our call to depthFirstTraversal(). You should see the traversal move in the following order: v0.0.0, v1.0.0, v1.1.0, v1.1.1, v1.1.2, v1.2.0, v1.2.1, v2.0.0, v2.1.0, and v2.1.1.
+
+Take a moment to ensure you understand how depthFirstTraversal() works, then select Run again and move on to the next exercise.

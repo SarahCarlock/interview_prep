@@ -1,0 +1,64 @@
+HEAPS: JAVASCRIPT
+Review
+Nice work! You’ve implemented a min-heap in JavaScript, and that’s no small feat (although it could efficiently track the smallest feat).
+
+To recap: MinHeap tracks the minimum element as the element at index 1 within an internal Javascript array.
+
+When adding elements, we use .bubbleUp() to compare the new element with its parent, making swaps if it violates the heap condition: children must be greater than their parents.
+
+When removing the minimum element, we swap it with the last element in the heap. Then we use .heapify() to compare the new root with its children, swapping with the smaller child if necessary.
+
+Heaps are useful because they’re efficient in maintaining their heap condition. Building a heap using elements that decrease in value would ensure that we continually violate the heap condition. How many swaps would that cause?
+
+Instructions
+Checkpoint 1 Passed
+1.
+Run the code in script.js to see how many swaps are made in a dataset of 10000 elements! We added extra lines of code to keep a count on the number of swaps in .bubbleUp() and .heapify() and log a message when the heap size has reached the 10000th element in .bubbleUp() and 9999 elements in .heapify().
+
+The number of swaps can be at most the height of the binary tree. The relationship between the maximum number of nodes, N, of a binary tree and the height, h, is:
+
+�
+=
+2
+ℎ
++
+1
+−
+1
+N=2 
+h+1
+ −1
+For a height of 13, the maximum number of nodes is
+
+2
+1
+4
+−
+1
+=
+1
+6
+3
+8
+3
+.
+2 
+14
+ −1=16383.
+For a height of 12, the maximum number of nodes is
+
+2
+1
+3
+−
+1
+=
+8
+1
+9
+1
+.
+2 
+13
+ −1=8191.
+Since 10000 falls between 8191 and 16383, the number of swaps can be at most 13.

@@ -1,0 +1,201 @@
+Question 1
+Consider a <-> b <-> c. When removing node c, the pointers of which node(s) should be updated?
+    Node b
+
+Question 2
+Doubly linked lists are bidirectional.
+    true
+
+Question 3
+Doubly linked list nodes contain all of the following EXCEPT?
+    Children
+
+Question 4
+Consider a <-> b <-> c. When removing node a, the pointers of which node(s) should be updated?
+    Node b
+
+Question 5
+Consider a <-> b <-> c. When removing node b, the pointers of which node(s) should be updated?
+    Nodes a and c
+
+Question 6
+Doubly linked lists have all of the following EXCEPT?
+    a direction, because linked lists are bidirectional.
+
+
+
+
+
+Quiz
+Question 1
+The .addToHead() and .addToTail() methods in DoublyLinkedList are the same as those in the LinkedList.
+    False. They are different because of the added tail property in DoublyLinkedList.
+
+Question 2
+What would you add to complete the following .addToHead() method?
+
+class Node {
+  setNextNode(data) {/* Method that sets the next Node */}
+  setPreviousNode(data) {/* Method that sets the previous Node */}
+}
+
+class DoublyLinkedList {
+  addToHead(data) {
+    const newHead = new Node(data);
+    const currentHead = this.head;
+    if (currentHead) {
+      currentHead.setPreviousNode(newHead);
+      newHead.setNextNode(currentHead);
+    }
+    this.head = newHead;
+    if (!this.tail) {
+      this.tail = newHead;
+    }
+  }
+}
+
+Question 3
+What will the following code output?
+
+class DoublyLinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+  }
+  addToHead(data) {/* Method that adds a node to the head of the list */} 
+  addToTail(data) {/* Method that adds a node to the tail of the list */} 
+  removeHead() {/* Method that removes the head of the list */} 
+  removeTail() {/* Method that removes the tail of the list */}
+  removeByData(data) {/* Method that removes a node that matches the data passed in */}
+}
+
+const testList = new DoublyLinkedList();
+testList.addToHead(9);
+testList.removeTail();
+testList.addToTail(8);
+testList.addToTail(2);
+testList.removeHead();
+testList.addToTail(4);
+testList.removeByData(9);
+testList.removeHead();
+console.log(testList.head.data);
+    4
+
+Question 4
+What would you add to complete the following .removeTail() method?
+
+class Node {
+  setNextNode(data) {/* Method that sets the next node */}
+  getPreviousNode() {/* Method that returns the previous node */}
+}
+class DoublyLinkedList {
+  removeHead(){/* Method that removes the head of the list */}
+  removeTail() {
+    const removedTail = this.tail;
+    if (!removedTail) {
+      return;
+    }
+    this.tail = removedTail.getPreviousNode();
+    if (this.tail) {
+      this.tail.setNextNode(null);
+    }
+    if (removedTail === this.head) {
+      this.removeHead();
+    }
+    return removedTail.data;
+  }
+}
+
+Question 5
+Why do the DoublyLinkedList class and the LinkedList class use different Node classes?
+    They use different Node classes because DoublyLinkedList needs a class with an added previous pointer and related methods.
+    The DoublyLinkedList class uses a Node class that has an added previous pointer and the related setter and getter methods, which are necessary for the DoublyLinkedLists‘s added tail property.
+
+Question 6
+What is the difference between the DoublyLinkedList and LinkedList constructors?
+    The DoublyLinkedList constructor has an added tail property.
+
+Question 7
+Given the following code, how would you complete the .removeByData() method?
+
+class DoublyLinkedList {
+   
+  removeByData(data) {
+    let nodeToRemove;
+    let currentNode = this.head;
+    while (currentNode !== null) {
+      if (currentNode.data === data) {
+        nodeToRemove = currentNode;
+        break;
+      }
+      currentNode = currentNode.getNextNode();
+    }
+    if (!nodeToRemove) {
+      return null;
+    }
+    if (nodeToRemove === this.head) {
+      this.removeHead();
+    } else if (nodeToRemove === this.tail) {
+      this.removeTail();
+    } else {
+      const nextNode = nodeToRemove.getNextNode();
+      const previousNode = nodeToRemove.getPreviousNode();
+      nextNode.setPreviousNode(previousNode);
+      previousNode.setNextNode(nextNode);
+    }
+    return nodeToRemove;
+  }  
+}
+
+Question 8
+What would you add to complete the following .removeHead() method?
+
+class Node {
+  getNextNode() {/* Method that returns the next node */}
+  setPreviousNode(data) {/* Method that sets the previous node */}
+}
+class DoublyLinkedList{
+  removeHead() {
+    const removedHead = this.head;
+    if (!removedHead) {
+      return;
+    }
+    this.head = removedHead.getNextNode();
+    if (this.head) {
+      this.head.setPreviousNode(null);
+    }
+    if (removedHead === this.tail) {
+      this.removeTail();
+    }
+    return removedHead.data;
+  }
+  removeTail() {/* Method that removes the tail of the list */}
+}
+
+Question 9
+What would you add to complete the following .addToTail() method?
+
+class Node {
+  setNextNode(data) {/* Method that sets the next Node */}
+  setPreviousNode(data) {/* Method that sets the previous Node */}
+}
+
+class DoublyLinkedList {
+  addToTail(data) {
+    const newTail = new Node(data);
+    const currentTail = this.tail;
+    if (currentTail) {
+      currentTail.setNextNode(newTail);
+      newTail.setPreviousNode(currentTail);
+    }
+    this.tail = newTail;
+    if (!this.head) {
+      this.head = newTail;
+    }
+  }
+}
+
+Question 10
+Which of the following is NOT true about the JavaScript implementation of a DoublyLinkedList?
+    Nodes are no longer in one order since the list has a tail.
+

@@ -1,0 +1,374 @@
+Question 1
+Which graph traversal could have given you this list?
+["sharks", "bees", "crocodiles", "sharks (reprise)", "piranhas", "lava", "fire pit", "blow torches", "lasers"]
+Note that this graph is undirected, so the search could move just as easily from “crocodiles” to “sharks” as the reverse. You can assume that the search will use alphabetical order to choose between two potential next vertices.
+blowtorches is connected to fire pit. lasers is connected to fire pit. fire pit is connected to lasers, blow torches, and lava. lava is connected to fire pit and sharks. sharks is connected to bees, crocodiles, and piranhas. bees is connected to sharks. crocodiles is connected to sharks (reprise) and sharks. piranhas is connected to sharks (reprise) and sharks. sharks (reprise) is connected to crocodiles and piranhas.
+    A pre-order traversal beginning with “sharks.”
+    A pre-order traversal adds each value to the list before it is added to the stack.
+
+Question 2
+You can use a graph search algorithm to ______________.
+    traverse the entirety of a graph data structure to locate a specific value
+    Graph search can also be used to put graph values into a linear list.
+
+Question 3
+When would it make more sense to use breadth-first search than depth-first search?
+    When you want to build a GPS system that finds the shortest route between two points on a map.
+    BFS is useful for map navigation tools because it helps determine the shortest path between two vertices.
+
+Question 4
+Which type of graph search generally employs recursion?
+    Depth-first search
+    DFS can also employ a stack data structure.
+
+Question 5
+Which asymptotic notation describes the runtime for graph search algorithms?
+O(vertices−edges)
+Ω(vertices+edges)
+O(vertices+edges)
+Θ(vertices∗log edges)
+​   C
+
+Question 6
+In order to keep track of vertices throughout its search, DFS employs the use of a __________ data structure.
+    stack
+    Depth-first search can also use recursion to keep track of vertices.
+
+Question 7
+In order to keep track of vertices throughout its search, BFS employs the use of a __________ data structure.
+    queue
+    Breadth-first search uses a queue data structure to keep track of vertices.
+
+
+
+
+QUIZ 2
+
+Question 1
+In our implementation of depth first traversal, what is the purpose of maintaining the visitedVertices?
+    Ensure that we do not traverse down the same vertex more than once
+    This is particularly useful to prevent infinite loops when the traversal encounters a cycle, or when a vertex’s neighbor is a vertex that has already been visited.
+
+Question 2
+In our implementation of breadth first traversal, the visit queue maintains vertices that have yet to be visited. If another data structure was used instead of the queue, what must the new data structure be able to do?
+    Maintain the same order that the vertices were put in the data structure.
+    The order needs to be maintained to ensure the vertices are visited by layers.
+
+Question 3
+Given the following traversal of the directed graph, what is the order that the vertices will be visited and what is the type of traversal?
+
+const graphTraversal = (start) => {
+  const visitedVertices = [start];
+  const visitQueue = new Queue();
+  visitQueue.enqueue(start);
+
+  while (!visitQueue.isEmpty()) {
+    const current = visitQueue.dequeue();
+    console.log(current.data);
+    current.edges.forEach((edge) => {
+      const neighbor = edge.end;
+      
+      if (!visitedVertices.includes(neighbor)) {
+        visitedVertices.push(neighbor);
+        visitQueue.enqueue(neighbor);
+      }
+    })
+  }
+};
+
+const graph = new Graph(true, false);
+const startNode = graph.addVertex('start');
+const a = graph.addVertex('a');
+const b = graph.addVertex('b');
+const c = graph.addVertex('c');
+
+graph.addEdge(startNode, a);
+graph.addEdge(startNode, b);
+graph.addEdge(startNode, c);
+graph.addEdge(a, c);
+graph.addEdge(b, c);
+graph.addEdge(c, b);
+
+graphTraversal(graph.vertices[0]);
+
+    Breadth first traversal; start → a → b → c
+
+Question 4
+In our implementation of breadth first traversal, what is the difference between the visitedVertices and visitQueue?
+    The visitedVertices track the vertices that have been visited, but the visitQueue maintains the order of vertices to visit next.
+
+Question 5
+Fill in the code to complete the depth first traversal.
+
+const depthFirstTraversal = (start, callback, visitedVertices = [start]) => {
+  callback(start);
+
+  start.edges.forEach((edge) => {
+    const neighbor = edge.end;
+
+    if (!visitedVertices.includes(neighbor)) {
+      visitedVertices.push(neighbor);
+      depthFirstTraversal(neighbor, callback, visitedVertices);
+    }
+  });
+};
+
+Question 6
+Fill in the code to complete the breadth first traversal.
+
+const breadthFirstTraversal = (start) => {
+  const visitedVertices = [start];
+  const visitQueue = new Queue();
+  visitQueue.enqueue(start);
+
+  while (!visitQueue.isEmpty()) {
+    const current = visitQueue.dequeue();
+
+    current.edges.forEach((edge) => {
+      const neighbor = edge.end;
+      
+      if (!visitedVertices.includes(neighbor)) {
+        visitedVertices.push(neighbor);
+        visitQueue.enqueue(neighbor);
+      }
+    })
+  }
+};
+
+Question 7
+Given a vertex in an acyclic graph, what conditions must be satisfied before it can be visited in a breadth first traversal?
+    The vertex’s parent and the parent’s siblings have been visited, but the vertex has not yet been visited.
+    Breadth first traversal occurs in layers, where all parents and its siblings must be visited before any of the neighbors.
+
+Question 8
+Given a vertex in an acyclic graph, what conditions must be satisfied before it can be visited in a depth first traversal?
+    The vertex’s parent has been visited, but the vertex has not yet been visited
+    The vertices to be queued up for visiting are taken from the parent’s neighbors, and we don’t want to unnecessarily visit vertices that have already been visited.
+
+Question 9
+The following is the vertex visiting order for a directed graph that was traversed using depth first search:
+
+a --> c --> b --> d
+
+Fill in the code to reconstruct the graph.
+
+Hint: It may be helpful to draw out all of the vertices and the current edges so far. From there, you can see the hierarchy based on the visiting order output.
+
+const graph = new Graph(false, true);
+
+// vertices added to the graph;
+const a = graph.addVertex('a');
+const b = graph.addVertex('b');
+const c = graph.addVertex('c');
+const d = graph.addVertex('d');
+
+graph.addEdge(a, c);
+graph.addEdge(c, b);
+graph.addEdge(b, a);
+graph.addEdge(a, d);
+
+depthFirstTraversal(a);
+
+Question 10
+Given the following traversal of the directed graph, what is the order that the vertices will be visited and what is the type of traversal?
+
+const graphTraversal = (start, visitedVertices = [start]) => {
+  start.edges.forEach((edge) => {
+    const neighbor = edge.end;
+
+    if (!visitedVertices.includes(neighbor)) {
+      visitedVertices.push(neighbor);
+      graphTraversal(neighbor, visitedVertices);
+    }
+  });
+};
+
+const graph = new Graph(true, false);
+const startNode = graph.addVertex('start');
+const a = graph.addVertex('a');
+const b = graph.addVertex('b');
+const c = graph.addVertex('c');
+
+graph.addEdge(startNode, a);
+graph.addEdge(startNode, b);
+graph.addEdge(startNode, c);
+graph.addEdge(a, c);
+graph.addEdge(b, c);
+graph.addEdge(c, b);
+
+graphTraversal(startNode);
+    Depth first traversal; start → a → c → b
+    You got it! Since it is depth-first, the full edge path is traversed starting with start -> a before any of the other start neighbors are visited.
+
+
+
+
+QUIZ 3
+
+Question 1
+Challenge Question: Would Dijkstra’s Algorithm be able to work with negative edge weights?
+  No
+  We always consider the distance up to our current vertex to be the shortest possible distance. However, a negative edge would mean that edges after the current vertex could lead to a shorter distance. This breaks our algorithm.
+
+Question 2
+Why does Dijkstra’s algorithm run in O((V+E)log V)?
+  In the worst case, we will visit all V+E vertices and edges. In each visit, we may have to update our min-heap which takes log V time. Thus, the runtime is O((V+E) log V)).
+
+Question 3
+True or False: Dijkstra’s algorithm follows a breadth first search rather than a depth-first-search.
+  True
+  Yes, we check all of the neighbors of our current vertex in each iteration, which is a key property of a breadth first search.
+
+Question 4
+Why must we initialize all the distances from the start vertex to infinity at the beginning of Dijkstra’s algorithm?
+  Since we haven’t searched the graph yet, we don’t know the distances, and thus, we must assume the maximum possible distance.
+
+Question 5
+What is wrong with the following pseudocode for Dijkstra’s algorithm?
+
+- Set all distances to all other vertices from start vertex to infinity
+- while heap exists:
+    - pop vertex with mininum distance
+    - check neighbors of that vertex:
+          - new distance = distance to vertex + edge weight
+          - if new distance > current distance:
+                 - replace current distance with new distance
+- return distances
+  We are checking if the new distance is greater than the current distance but we should check if it is less than the current distance.
+
+
+
+
+
+QUIZ 4
+
+Question 1
+In our implementation, we use a priority queue to iterate through the vertices in the graph. Could we still find the shortest path if we used a regular queue?
+  Yes. The queue is simply a way to keep track of which vertices have a shorter path, so any connections through that path could lead to shorter paths to other vertices. A priority queue just helps to reduce the number of reevaluations that have to be done.
+
+Question 2
+In our implementation of Dijkstra’s algorithm, what is the purpose of the priority queue?
+  The priority queue is used to iterate through every connection in the graph with a shorter path and reevaluate any connections through the shorter path.
+  We use the priority queue to track which vertices we need to evaluate, or reevaluate. We continue to iterate through the vertices when there are none left, which means there are no shorter paths left to explore.
+  Reevaluating paths explores the possibility of shorter paths through the queued vertex.
+
+Question 3
+Fill in the code to complete the evaluation that checks for a shorter alternate path.
+
+while (!queue.isEmpty()) {
+  const { vertex } = queue.popMin();
+
+  vertex.edges.forEach(edge => {
+    let alternate = distances[vertex.data] + edge.weight;
+    let neighborValue = edge.end.data;
+    if (alternate < distances[neighborValue]) {
+      distances[neighborValue] = alternate;
+      previous[neighborValue] = vertex;
+      queue.add({vertex: edge.end, priority: distances[neighborValue]})
+    }
+  });
+}
+
+Question 4
+In our implementation of Dijkstra’s algorithm, we use Infinity as the initial distance for each vertex in the graph (except for the starting vertex). We could have null instead. Fill in the code that would modify the implementation to use null as the initial distance.
+
+const distances = {};
+const previous = {};
+const queue = new PriorityQueue();
+
+queue.add({ vertex: startingVertex, priority: 0 });
+
+graph.vertices.forEach((vertex) => {
+  distances[vertex.data] = null;
+  previous[vertex.data] = null;
+});
+
+distances[startingVertex.data] = 0;
+
+while (!queue.isEmpty()) {
+  const { vertex } = queue.popMin();
+
+  vertex.edges.forEach(edge => {
+    let alternate = distances[vertex.data] + edge.weight;
+    let neighborValue = edge.end.data;
+
+    const isInitialDistance = distances[neighborValue] === null; (not vertex.data)
+
+    if (alternate < distances[neighborValue] || isInitialDistance) {
+      distances[neighborValue] = alternate;
+      previous[neighborValue] = vertex;
+
+      queue.add({vertex: edge.end, priority: distances[neighborValue]})
+    }
+  });
+}
+return { distances, previous };
+
+Question 5
+Fill in the code to update the record of shortest distances when a shorter path is found.
+
+while (!queue.isEmpty()) {
+  const { vertex } = queue.popMin();
+
+  vertex.edges.forEach(edge => {
+    let alternate = distances[vertex.data] + edge.weight;
+    let neighborValue = edge.end.data;
+    if (alternate < distances[neighborValue]) {
+      distances[neighborValue] = alternate;
+      previous[neighborValue] = vertex;
+      queue.add({vertex: edge.end, priority: distances[neighborValue]});
+    }
+  });
+}
+
+Question 6
+During the setup portion of the algorithm, we set the initial distance of each vertex to Infinity. What does this accomplish?
+
+graph.vertices.forEach((vertex) => {
+  distances[vertex.data] = Infinity;
+  previous[vertex.data] = null;
+});
+  It sets the distance to the vertex to the largest value possible, so any path that does exist is guaranteed to be smaller than Infinity. This allows us to record the first path to each vertex as the current shortest, and we can make comparisons of other paths against the existing path.
+  Vertices that do not have any path from the starting vertex will remain with a distance of Infinity.
+
+Question 7
+Fill in the code to update the record of previous vertices when a shorter path is found.
+
+while (!queue.isEmpty()) {
+  const { vertex } = queue.popMin();
+
+  vertex.edges.forEach(edge => {
+    let alternate = distances[vertex.data] + edge.weight;
+    let neighborValue = edge.end.data;
+    if (alternate < distances[neighborValue]) {
+      distances[neighborValue] = alternate;
+      previous[neighborValue] = vertex;
+      queue.add({vertex: edge.end, priority: distances[neighborValue]})
+    }
+  });
+}
+
+Question 8
+During the setup of Dijkstra’s algorithm, we set the distance of the starting vertex to 0. What would happen if it was left at Infinity?
+  None of the vertices would update with a shorter path.
+  We start with all of the starting vertex’s connections. The alternate path is determined by adding the starting vertex’s initial distance of Infinity to the weight of the connection, which is still Infinity.
+
+Question 9
+After evaluating each vertex in the queue once, the distances object holds the shortest paths to each vertex among all the paths.
+  False: It does not have the shortest path until all paths have been processed.
+  As each path is evaluated, it is possible for a path that is discovered later to be a part of a shorter path to a vertex that has already been evaluated.
+
+Question 10
+Fill in the code to trace through the Dijkstra’s map of previous vertices to create the full shortest path from the starting vertex to target vertex.
+
+const { previous } = dijkstras(graph, startingVertex);
+
+const path = [];
+
+let vertex = targetVertex;
+while (vertex) {
+  path.unshift(vertex);
+  vertex = previous[vertex.data];
+}
+
+return path;

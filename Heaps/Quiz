@@ -1,0 +1,164 @@
+Question 1
+In a min-heap, what happens during the process of “heapifying up”?
+    While there is a parent for an element and the parent is greater, the element swaps location with the parent.
+
+Question 2
+Heaps are often visualized as binary trees and implemented using a sequential data structure like an array.
+    True
+    The tree representation is helpful to visualize the operations inherent to a heap, but more efficient implementations exist in practice.
+
+Question 3
+When removing the minimum or maximum value from a heap, what element first replaces the root before heapifying down?
+    The element at the bottom right of the tree, or last element in the array.
+    We first swap the root, or first, element with the bottom rightmost, or last element. Then we heapify down to restore the heap properties.
+
+Question 4
+In a max-heap, what two qualities does the heap ensure?
+    The “root” or first element is the largest value and every child is a lesser value than their parent.
+    A max-heap maintains easy access to the largest value.
+
+Question 5
+A heap is an effective solution for what kind of problem?
+    When you need to efficiently maintain a maximum or minimum value in a dataset.
+    Heaps allow us to retrieve and maintain a minimum or maximum value.
+
+Question 6
+In a min-heap, what is true of the first element in the array, or “root” element?
+    It is the minimum value.
+    A min-heap will keep the minimum value at the root of the tree or as the first element in an array.
+
+Question 7
+What element is removed from a heap?
+    The "root" node, or first element in the array. Heaps are concerned with the maximum or minimum value, which is the only element removed.
+
+Question 8
+In a max-heap, what happens during the process of “heapifying down”?
+    While there is a child for an element and the child is greater, the element swaps locations with the child.
+
+
+
+
+Quiz
+
+Question 1
+The MinHeap class method .heapify() restores the minimum element in the heap after it has been removed in .popMin(). Fill in the correct condition in the code that enables the minimum element at index 1 to swap with the appropriate child element.
+
+class MinHeap {
+  // ...
+  heapify() {
+    let current = 1;
+    let leftChild = getLeft(current);
+    let rightChild = getRight(current);
+
+    while (this.canSwap(current, leftChild, rightChild)) {
+      if (this.exists(leftChild) && this.exists(rightChild)) {
+        // Make sure to swap with the smaller of the two children
+        if (this.heap[leftChild] < this.heap[rightChild]) {
+          this.swap(current, leftChild);
+          current = leftChild;
+        } else {
+          this.swap(current, rightChild);
+          current = rightChild;
+        }
+      } else {
+        this.swap(current, leftChild);
+        current = leftChild;
+      }
+      leftChild = getLeft(current);
+      rightChild = getRight(current);
+    }
+  }
+}
+
+Question 2
+Which of these is not an operation of a Min-Heap data structure?
+    Insert an element at the root of the heap. This is not a valid operation, as an element is always appended at the end, and not at the root.
+
+Question 3
+Finish the MinHeap .heapify() method in order to prevent it from running infinitely.
+
+ heapify() {
+    let current = 1;
+    let leftChild = getLeft(current);
+    let rightChild = getRight(current);
+
+    while (this.canSwap(current, leftChild, rightChild)) {
+      if (this.exists(leftChild) && this.exists(rightChild)) {
+        if (this.heap[leftChild] < this.heap[rightChild]) {
+          this.swap(current, leftChild);
+          current = leftChild;
+        } else {
+          this.swap(current, rightChild);
+          current = rightChild;
+        }
+      } else {
+        this.swap(current, leftChild);
+        current = leftChild;
+      }
+      leftChild = getLeft(current);
+      rightChild = getRight(current);
+
+    }
+  }
+
+Question 4
+This .popMin() MinHeap method is missing a few steps. Complete it so that it removes the minimum value and returns it, or returns null if the heap is empty.
+
+  popMin() {
+    if (this.size === 0) {
+      return null;
+    }
+    this.swap(1, this.size);
+    const min = this.heap.pop();
+    this.size--;
+    this.heapify();
+    return min;
+  }
+
+Question 5
+What would be the correct restored state of this heap:
+
+[ null, 14, 15, 36, 28, 38 ]
+after adding 30 to it? Hint: Locate the parent index of the appended element and swap if necessary.
+    [ null, 14, 15, 30, 28, 38, 36 ]
+
+Question 6
+The Javascript MinHeap class method, .push(value), works in conjunction with .bubbleUp(). The purpose of .bubbleUp() is to restore the min-heap condition when an element is pushed to the heap:
+
+the parent element has to be less in value than the child element
+Fill in the code with the correct swap condition in .bubbleUp().
+
+class MinHeap {
+  // ...
+  add(value) {
+    this.heap.push(value);
+    this.size++;
+    this.bubbleUp();
+  }  
+
+  bubbleUp() {
+    let current = this.size;
+    while (current > 1 && this.heap[getParent(current)] > this.heap[current]) {
+      this.swap(current, getParent(current));
+      current = getParent(current);
+    }
+  }
+}
+
+Question 7
+What are the parent index, left child index and right child index of an element at index 10?
+    Parent: 5, Left Child: 20, Right Child: 21
+
+Question 8
+The helper method .canSwap() determines if the current element breaks the heap condition of:
+
+The current element has to be less than both its children
+by comparing it with either of its children. Fill in the code with the correct conditional.
+
+canSwap(current, leftChild, rightChild) {
+    // Check that one of the possible swap conditions exists
+    return (
+      this.exists(leftChild) && this.heap[current] > this.heap[leftChild]
+      || this.exists(rightChild) && this.heap[current] > this.heap[rightChild]
+    );
+  }
