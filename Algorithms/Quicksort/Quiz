@@ -1,0 +1,185 @@
+Question 1
+If we always chose the first element as the pivot, what type of data-set would cause quicksort to have a O(n^2) runtime?
+    A sorted data-set.
+    If the first element is chosen consistently and the data is already sorted, we’ll only reduce the problem by one element at each partition step. Ideally the partition step will divide the problem in half.
+
+Question 2
+For a recursive version of quicksort, what would be the base case when the algorithm stops recursing?
+    When the array passed in as an argument is no larger than one element.
+    A single element array is sorted. These elements are then either recombined, or if the sort was “in-place”, they’ve already been swapped into the correct location.
+
+Question 3
+What is the benefit of randomly selecting a pivot element in quicksort?
+    A random pivot element removes the possibility that any one data-set will result in a poor Big O runtime.
+    If the first element is always chosen as the pivot and the data-set is sorted, this would result in a O(n^2) runtime because the partition step only reduces the problem by a single element.
+
+Question 4
+For quicksort to achieve the average case runtime of O(n*logn), what must be true during the partition step?
+    The partition step must divide the array into two halves of roughly equal length.
+    Ideally the “lesser than” and “greater than” sub-arrays will contain a similar number of elements. This reduces the number of recursive calls.
+
+Question 5
+What role does the “pivot” element play in the quicksort algorithm?
+    The pivot element is compared with other elements during the partition step.
+    Other elements are placed into a “greater than” or “lesser than” sub-list based on a comparison with the pivot element.
+
+Question 6
+In the ?????? step of the quicksort algorithm, the list of values is broken into sub-lists based on comparisons with a pivot value.
+    Partition.
+    In the partition step, the array is divided into two sub-arrays that contain values lesser than, or greater than, the pivot value.
+
+Question 7
+Quicksort is a comparison sort.
+    True.
+    Quicksort orders values in an array based on a comparison between the values.
+
+
+
+
+
+QUIZ 2
+
+Question 1
+Pick the statement that is NOT true about the Quicksort algorithm.
+    Quicksort’s worst runtime is O(N * log N), where N is the size of the input array.
+    This is not true because Quicksort has a worst runtime of O(N^2), hence, this is the correct answer.
+
+Question 2
+Pick the statement that is NOT true when the pivot element chosen is either the biggest or smallest element of the input array.
+    The Big-O runtime of the quicksort algorithm becomes O(2^N).
+    The Big-O runtime would be O(N^2), not O(2^N), hence, this is the correct answer.
+
+Question 3
+The function partition() is called with input array [ 11, 0, 22, 34, 33 ], 0 as leftIndex, and 2 as rightIndex. What would the content of the array be after swapping?
+
+const partition = (array, leftIndex, rightIndex) => {
+  const pivot = array[Math.floor((rightIndex + leftIndex) / 2)];
+  while (leftIndex <= rightIndex) {
+    while (array[leftIndex] < pivot) {
+      leftIndex++;
+    }
+    while (array[rightIndex] > pivot) {
+      rightIndex--;
+    }
+    if (leftIndex <= rightIndex) {
+      swap(array, leftIndex, rightIndex);
+      leftIndex++;
+      rightIndex--;
+    }
+  }
+  return leftIndex;
+}
+    [ 0, 11, 22, 34, 33 ]
+    Indices 0 and 1 are swapped.
+
+Question 4
+Which condition would NOT lead to a quicksort algorithm running in its worst case of O(N^2)?
+    When a random element in the input array is chosen to be the pivot element.
+    A random element would most likely result in balanced partitions and not lead to a worst case running time.
+
+Question 5
+The partitioning process relies on two very important conditions when moving the left index or right index closer to the pivot element. Fill in the blanks with the correct conditions.
+
+const partition = (array, leftIndex, rightIndex) => {
+  const pivot = array[Math.floor((rightIndex + leftIndex) / 2)];
+  while (leftIndex <= rightIndex) {
+    while (array[leftIndex] < pivot) {
+      leftIndex++;
+    }
+    while (array[rightIndex] > pivot) {
+      rightIndex--;
+    }
+    if (leftIndex <= rightIndex) {
+      swap(array, leftIndex, rightIndex);
+      leftIndex++;
+      rightIndex--;
+    }
+  }
+  return leftIndex;
+}
+
+Question 6
+The following input array:
+
+[ 5, 4, 3, 2, 1 ]
+
+returns the sorted result as:
+
+[ 2, 3, 4, 5, 1 ]
+
+What do you call quicksort() with to produce such a result?
+
+const { quicksort } = require('./quicksort');
+
+let numbers = [];
+let max = 5;
+for (let i = max; i > 0; i--) {
+  numbers.push(i);
+}
+
+console.log('Before :', numbers);
+const sorted = quicksort(numbers, 0, 3);
+console.log('After :', sorted);
+
+Question 7
+The following input array:
+
+[ 20, 22, 3, 20, 25, 12 ]
+
+returns the sorted result as:
+
+[ 20, 3, 20, 22, 25, 12 ]
+
+What do you call quicksort() with to produce such a result?
+
+const { quicksort } = require('./quicksort');
+const randomize = () => Math.floor(Math.random() * 40);
+
+let numbers = [];
+let max = 6;
+for (let i = max; i > 0; i--) {
+  numbers.push(randomize());
+}
+
+console.log('Before :', numbers);
+const sorted = quicksort(numbers, 1, 4);
+console.log('After :', sorted);
+
+Question 8
+In our recursive implementation of quicksort(), we use a base case to determine when recursion should stop. Fill in the code with the correct evaluation.
+
+const quicksort = (array, leftBound = 0, rightBound = array.length - 1) => {
+  if (array.length > 1) {
+    const pivotIndex = partition(array, leftBound, rightBound);
+    if (leftBound < pivotIndex - 1) {
+      quicksort(array, leftBound, pivotIndex - 1);
+    }
+    if (pivotIndex < rightBound) {
+      quicksort(array, pivotIndex, rightBound);
+    }
+  }
+  return array;
+}
+
+Question 9
+If we have the array, [ 26, 18, 10, 11, 35 ], as input, 10 as the pivot element, 0 as leftIndex, and 4 as rightIndex, what would the resulting array be after calling partition()?
+
+const partition = (array, leftIndex, rightIndex) => {
+  const pivot = array[Math.floor((rightIndex + leftIndex) / 2)];
+  while (leftIndex <= rightIndex) {
+    while (array[leftIndex] < pivot) {
+      leftIndex++;
+    }
+    while (array[rightIndex] > pivot) {
+      rightIndex--;
+    }
+    if (leftIndex <= rightIndex) {
+      swap(array, leftIndex, rightIndex);
+      leftIndex++;
+      rightIndex--;
+    }
+  }
+  return leftIndex;
+}
+    [ 10, 18, 26, 11, 35 ]
+    Great job figuring this out.

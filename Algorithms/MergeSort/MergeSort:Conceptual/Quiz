@@ -1,0 +1,266 @@
+Question 1
+What are the two steps to a merge sort?
+    Split and merge
+    First a merge sort splits the list up and then it merges the split lists.
+
+Question 2
+In the merge sub-routine, how do we combine two sub-lists into a single sorted list?
+    By looping as long as both sub-lists have elements, comparing their first element, and transfering the smaller element to a result list.
+    The merge sub-routine is a linear operation because it only inspects and compares the first element of the list.
+
+Question 3
+Merge sort will mutate, or alter, the original list passed in as the argument.
+    False
+    Merge sort creates many copies of the original list, there is no mutation.
+
+Question 4
+What is the time complexity of merge sort?
+    O(N * log(N))
+    In all cases merge sort performs in O(N * log(N)) time.
+
+Question 5
+What kind of algorithm is merge sort?
+    Divide-and-conquer
+    Merge sort reduces its problem to smaller problems iteratively solves those by a process called a divide-and-conquer algorithm.
+
+Question 6
+What is always true of the sub-lists passed as arguments to merge?
+    They are sorted.
+    By using already sorted sub-lists, the merge sub-routine can combine them into a single sorted list in O(N) time.
+
+Question 7
+What is the base case for merge sort, when the function does not recurse?
+    When merge sort is passed an empty or single element list as the argument.
+    The base case ensures we’re passing “sorted” lists to the merge sub-routine.
+
+
+
+
+Quiz 2
+
+Question 1
+Fill in the code below. The blanks within this code are responsible for merging two input arrays in ascending order.
+
+const mergeSort = (startArray) => {
+  const length = startArray.length;
+  if (length === 1) {
+    return startArray;
+  }
+  
+  const mid = Math.floor(length / 2);
+  const leftArray = startArray.slice(0, mid);
+  const rightArray = startArray.slice(mid, length);
+
+  return merge(mergeSort(leftArray), mergeSort(rightArray));
+}
+
+const merge = (leftArray, rightArray) => {
+  const sortedArray = []
+  while (leftArray.length > 0 && rightArray.length > 0) {
+    if (leftArray[0] < rightArray[0]) {
+      sortedArray.push(leftArray[0]);
+      leftArray.shift();
+    } else {
+      sortedArray.push(rightArray[0]);
+      rightArray.shift();
+    }
+  }
+  
+  return sortedArray.concat(leftArray).concat(rightArray);
+}
+
+Question 2
+Use the code to answer this question. If we called mergeSort([12, 14, 13, 15]), what would you expect to be printed to the console?
+
+const mergeSort = (startArray) => {
+  const length = startArray.length;
+  if (length === 1) {
+    return startArray;
+  }
+  
+  const mid = Math.floor(length / 2);
+  const leftArray = startArray.slice(0, mid);
+  const rightArray = startArray.slice(mid, length);
+
+  console.log(leftArray);
+  console.log(rightArray);
+}
+    [ 12, 14 ]
+    [ 13, 15 ]
+    The mergeSort() function is responsible for splitting an input array down the middle, with the left indices in one array and the right indices in the other array.
+
+Question 3
+Fill in the code below. The blanks within this code are responsible for setting the recursive case of the mergeSort() function.
+
+const mergeSort = (startArray) => {
+  const length = startArray.length;
+  if (length === 1) {
+    return startArray;
+  }
+  
+  const mid = Math.floor(length / 2);
+  const leftArray = startArray.slice(0, mid);
+  const rightArray = startArray.slice(mid, length);
+
+  return merge(mergeSort(leftArray), mergeSort(rightArray))
+}
+
+const merge = (leftArray, rightArray) => {
+  // Function that merges leftArray and rightArray into one sorted array which it returns
+}
+
+Question 4
+Which of the following best describes the purpose of the calls to the .concat() method at the bottom of the merge() function?
+
+const mergeSort = (startArray) => {
+  const length = startArray.length;
+  if (length === 1) {
+    return startArray;
+  }
+  
+  const mid = Math.floor(length / 2);
+  const leftArray = startArray.slice(0, mid);
+  const rightArray = startArray.slice(mid, length);
+
+  return merge(mergeSort(leftArray), mergeSort(rightArray))
+}
+
+const merge = (leftArray, rightArray) => {
+  const sortedArray = []
+  while (leftArray.length > 0 && rightArray.length > 0) {
+    if (leftArray[0] < rightArray[0]) {
+      sortedArray.push(leftArray[0]);
+      leftArray.shift();
+    } else {
+      sortedArray.push(rightArray[0]);
+      rightArray.shift();
+    }
+  }
+  
+  return sortedArray.concat(leftArray).concat(rightArray);
+}
+    Either leftArray or rightArray will still have elements in it after the while loop. The .concat() method will add the remaining elements from this array to sortedArray.
+    The remaining elements in the array will be greater than any of the numbers in sortedArray.
+
+Question 5
+Fill in the code so it will print the following to the console:
+
+[2, 5, 6, 22]
+    const mergeSort = (startArray) => {
+        const length = startArray.length;
+        if (length === 1) {
+            return startArray;
+        }
+        
+        const mid = Math.floor(length / 2);
+        const leftArray = startArray.slice(0, mid);
+        const rightArray = startArray.slice(mid, length);
+
+        return merge(mergeSort(leftArray), mergeSort(rightArray));
+        }
+
+        const merge = (leftArray, rightArray) => {
+        const sortedArray = []
+        while (leftArray.length > 0 && rightArray.length > 0) {
+            if (leftArray[0] < rightArray[0]) {
+            sortedArray.push(leftArray[0]);
+            leftArray.shift();
+            } else {
+            sortedArray.push(rightArray[0]);
+            rightArray.shift();
+            }
+        }
+        
+        return sortedArray.concat(leftArray).concat(rightArray);
+        }
+
+
+        const inputArr = [6, 22, 2, 5];
+
+        console.log(mergeSort(inputArr));
+
+Question 6
+What is the purpose of the call to .shift() in the merge() function?
+
+const mergeSort = (startArray) => {
+  const length = startArray.length;
+  if (length === 1) {
+    return startArray;
+  }
+  
+  const mid = Math.floor(length / 2);
+  const leftArray = startArray.slice(0, mid);
+  const rightArray = startArray.slice(mid, length);
+
+  return merge(mergeSort(leftArray), mergeSort(rightArray))
+}
+
+const merge = (leftArray, rightArray) => {
+  const sortedArray = []
+  while (leftArray.length > 0 && rightArray.length > 0) {
+    if (leftArray[0] < rightArray[0]) {
+      sortedArray.push(leftArray[0]);
+      leftArray.shift();
+    } else {
+      sortedArray.push(rightArray[0]);
+      rightArray.shift();
+    }
+  }
+  
+  return sortedArray.concat(leftArray).concat(rightArray);
+}
+    The .shift() method removes the first element of the array with the smallest number. If we did not include this line, the while loop would continue infinitely.
+    If we did not call the .shift() method, the while loop would continue infinitely and compare the same two numbers over and over again.
+
+Question 7
+Fill in the code below. The blanks within this code are responsible for setting the base case of the mergeSort() function.
+
+const mergeSort = (startArray) => {
+  const length = startArray.length;
+  if (length === 1) {
+    return startArray;
+  }
+  
+  const mid = Math.floor(length / 2);
+  const leftArray = startArray.slice(0, mid);
+  const rightArray = startArray.slice(mid, length);
+
+  return merge(mergeSort(leftArray), mergeSort(rightArray));
+}
+
+const merge = (leftArray, rightArray) => {
+  // Function that merges leftArray and rightArray into one sorted array which it returns
+}
+
+Question 8
+Use the code to answer this question. What do you expect console.log(mergeSort([44, 15, 9, 12])) to log to the console?
+
+const mergeSort = (startArray) => {
+  const length = startArray.length;
+  if (length === 1) {
+    return startArray;
+  }
+  
+  const mid = Math.floor(length / 2);
+  const leftArray = startArray.slice(0, mid);
+  const rightArray = startArray.slice(mid, length);
+
+  return merge(mergeSort(leftArray), mergeSort(rightArray));
+}
+
+const merge = (leftArray, rightArray) => {
+  const sortedArray = []
+  while (leftArray.length > 0 && rightArray.length > 0) {
+    if (leftArray[0] < rightArray[0]) {
+      sortedArray.push(leftArray[0]);
+      leftArray.shift();
+    } else {
+      sortedArray.push(rightArray[0]);
+      rightArray.shift();
+    }
+  }
+  
+  return sortedArray.concat(leftArray).concat(rightArray);
+}
+    [9, 12, 15, 44]
+    the mergeSort() function returns the input array sorted.

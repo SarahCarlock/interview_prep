@@ -1,0 +1,38 @@
+QUICKSORT: JAVASCRIPT
+Partitioning Part III - Swapping
+Recall that our leftIndex and rightIndex were at 2 and 3 respectively. They cannot move any further because their respective elements are greater than or less than the pivot element. When this happens, we need to swap those elements so that they will end up at the correct side of the partition.
+
+[ 3, 1, 4, 2, 8, 9 ]
+        L  R
+        P
+swap 4 and 2
+[ 3, 1, 2, 4, 8, 9 ]
+        L  R
+        P
+After we swap them, we move L forward and R backward.
+
+Move L forward and R backward
+[ 3, 1, 2, 4, 8, 9 ]
+        R  L
+        P
+We return to our outer while loop condition to check if leftIndex (3) is less than or equal to rightIndex (2). In this case, 3 > 2, so we exit the while loop.
+
+At this juncture, the elements that are less than the pivot are to the left of it and the elements that are greater than the pivot are to the right of it. We can stop partitioning and return the leftIndex which points to the pivot element 4. Hence, our pivot index is 3 which is also the leftIndex.
+
+Instructions
+Checkpoint 1 Passed
+1.
+At this juncture, the leftIndex should be pointing at an element that is not less than the pivot element and the rightIndex should be pointing at an element that is not greater than the pivot element. Since these elements are on the wrong side of the partition because they do not meet the heap condition, they need to be swapped.
+
+Inside the outer while loop, after the previous two loops, determine if the leftIndex and rightIndex can be swapped by checking if leftIndex is still less than or equal to rightIndex.
+
+If it is, do the following:
+
+swap the elements at both indices using the swap(arrayToSwap, indexOne, indexTwo) helper function.
+increment leftIndex
+decrement rightIndex
+
+Stuck? Get a hint
+Checkpoint 2 Passed
+2.
+Outside the outer while loop, before exiting partition(), return leftIndex.

@@ -1,0 +1,130 @@
+Question 1
+Given a hash table that handles collisions, which of the following need to be saved so that values can be assigned, reassigned, and looked up?
+
+The Key
+The Hash Code
+The Array Index
+The Value
+    The Key and the value. The key is necessary because two different keys might produce the same hash.
+
+Question 2
+Which of the following is true of a hash function?
+    It is not reversible.
+    Hash functions compress data, so an input can’t be retrieved from its own output.
+
+Question 3
+How does a hash map turn the hash code for something into an array index?
+    Using the modulus operator, usually via a compression method.
+
+Question 4
+What does the collision strategy called Open Addressing do when it finds a collision?
+    Looks for another cell in the underlying array to add the value to.
+    It can do this with different methods (linear, quadratic, etc.,) but this is what it does.
+
+
+
+
+
+Quiz
+
+Question 1
+Fill in the code to finish .retrieve():
+
+retrieve(key) {
+  const arrayIndex = this.hash(key);
+  let current = this.hashmap[arrayIndex].head;
+  
+  while (current) {
+    if (current.data.key === key) {
+      return current.data.value;
+    }
+    current = current.next;
+  }
+  return null;
+}
+
+Question 2
+Fill in the code for the HashMap constructor method so we can use separate chaining:
+
+class HashMap {
+  constructor(size = 0) {
+    this.hashmap = new Array(size)
+      .fill(null)
+      .map(() => new LinkedList());
+  }
+}
+
+Question 3
+What is separate chaining?
+    Using linked lists to store values in a hash map array in order to avoid collisions
+
+Question 4
+Will running this code result in a collision between keys?
+
+class HashMap {
+  constructor(size = 0) {
+    this.hashmap = new Array(size)
+      .fill(null);  
+  } 
+  
+    hash(key) {
+    let hashCode = 0;
+    for (let i = 0; i < key.length; i++) {
+      hashCode += hashCode + key.charCodeAt(i);
+    }
+    return hashCode % this.hashmap.length;
+  }
+  
+  assign(key, value) {
+    const arrayIndex = this.hash(key);
+    this.hashmap[arrayIndex] = value;
+  }
+}
+    Yes, this hash map implementation will result in a collision between keys. Any value stored at an index in the hash map array will be overwritten if another key is assigned to that index.
+    The .assign() method only overwrites values, it doesn’t check that keys are matching and doesn’t make use of separate chaining.
+
+Question 5
+Finish this .hash() method:
+
+class HashMap {
+  constructor(size = 0) {
+  this.hashmap = new Array(size) 
+    .fill(null);
+}
+
+hash(key) {
+  let hashCode = 0;
+  for (let i = 0; i < key.length; i++) {
+    hashCode += hashCode + key.charCodeAt(i):
+  }
+    return hashCode % this.hashmap.length;
+  }
+}
+
+Question 6
+Fill in the code regarding the current variable in .assign():
+
+assign(key, value) {
+  const arrayIndex = this.hash(key);
+  const linkedList = this.hashmap[arrayIndex];
+  
+  if (linkedList.head === null) {
+    linkedList.addToHead({ key, value });
+    return;
+  }
+  
+  let current = linkedList.head;
+  
+  while (current) {
+    if (current.data.key === key) {
+      current.data = { key, value };
+    }
+
+    if (!current.getNextNode()) {
+      let tail = new Node({key, value});
+      current.setNextNode(tail);
+      break;
+    }
+      current = current.getNextNode();
+    }
+  }

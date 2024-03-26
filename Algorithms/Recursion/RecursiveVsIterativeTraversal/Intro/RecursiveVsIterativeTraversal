@@ -1,0 +1,47 @@
+RECURSIVE VS. ITERATIVE TRAVERSAL
+Introduction
+In this lesson, you will learn how to implement a recursive solution to a linked list search. The method accepts a value as input and recursively checks each node in the linked list, until the node of interest is found. If it is found, the method should return the node. Otherwise, it should return null.
+
+Before you begin, let’s take a look at how we can search for an element in a linked list using an iterative approach. The code below is taken from the LinkedList() class in LinkedList.js.
+
+findNodeIteratively(data) {
+  let currentNode = this.head;
+  while (currentNode !== null) {
+    if (currentNode.data === data) {
+      return currentNode;
+    }
+    currentNode = currentNode.next;
+  }
+  return null;
+}
+
+The method starts at the head of the linked list and checks if the input data is equal to the data parameter at the head. The method continues to iterate through the linked list until the node is found or the end of the list is reached.
+
+Instructions
+Checkpoint 1 Passed
+1.
+In index.js, use .findNodeIteratively() to find the Node in myList with data equal to 'Node 3'.
+
+Save the returned value to foundNode, then log it to the console.
+
+
+Hint
+From index.js, use the following syntax:
+
+myList.findNodeIteratively('Node');
+
+After saving the value to foundNode, log it to the console with the following syntax:
+
+console.log(foundNode);
+
+
+
+
+RECURSIVE VS. ITERATIVE TRAVERSAL
+Review
+In this lesson, you learned how to implement a recursive solution to a linked list search. The solution includes the following cases:
+
+Base case 1 – return the current node if it matches the data argument.
+Base case 2 – return null if the end of the linked list is reached.
+Recursive Case – return a call to .findNodeRecursively() with the next node as an argument.
+The recursive approach laid out in this lesson is similar to implementations for traversing other data structures, like trees and directories. This is an important insight to keep in mind as you encounter more recursive implementations.

@@ -1,0 +1,128 @@
+Question 1
+An input list which is mostly ordered will require less swaps than an input list which is mostly unordered.
+    TRue
+     Bubble sort will only make a swap if an element is out of order.
+
+Question 2
+If no copy is made of the input list then bubble sort will alter the original array to produce the sorted data-set.
+    True.
+    Bubble sort sorts the input array by swapping values within the original array unless a copy is made at the beginning of the algorithm.
+
+Question 3
+Bubble sort orders an input array through a series of comparisons and swaps.
+    True.
+    After each pass of the inner loop, the next largest value will be correctly placed via swapping elements.
+
+Question 4
+What is the big o runtime of bubble sort?
+    Quadratic- O(N^2)
+    Bubble sort is implemented with nested loops that iterate through the elements of the input array which results in a quadratic runtime.
+
+Question 5
+Bubble sort is the most efficient of the comparison sorting algorithms.
+    False
+    Bubble sort is a good introduction to algorithmic thinking and sorting in particular, but it is not the most efficient.
+
+
+
+
+QUIZ 2
+
+Question 1
+How many swaps would it take for bubble sort to sort this array?
+
+[4, 3, 2, 1]
+    6 swaps
+    Yes, bubble sort would need to swap elements in this array 6 times to get it in order from smallest to largest.
+
+Question 2
+What’s wrong with this implementation of bubble sort?
+
+const bubbleSort = input => {
+  let swapping = true;
+  
+  while (swapping) {
+    swapping = false;
+    for (let i = 0; i < input.length - 1; i++) {
+      if (input[i] < input[i + 1]) {
+        swap(input, i, i + 1);
+        swapping = true;
+      }
+    }
+  }
+  
+  return input;
+};
+    It would sort the elements in the input array from largest to smallest
+    The comparator should be > in the if statement.
+
+Question 3
+Put the steps of the bubble sort algorithm in order:
+
+while array is not sorted
+    for each value in array
+        if currentVal > nextVal
+            swap currentVal and nextVal
+return array
+
+Question 4
+What array would bubble sort be able to sort with the least swaps or in O(n) time?
+    [1, 2, 3, 4]
+    No swaps are needed since this array is already sorted from smallest to largest. So, we can say that if given this input, bubble sort would run in O(n) time.
+
+Question 5
+What array would bubble sort be able to sort in a worst-case time of O(n^2)?
+    [4, 3, 2, 1]
+    Because this array is sorted from largest to smallest, bubble sort would have a runtime of O(n^2).
+
+Question 6
+Finish this bubble sort implementation below so that it continually checks for unsorted elements and swaps them, until the array is completely sorted:
+
+const bubbleSort = input => {
+  let swapping = true;
+
+  while (swapping) {
+    swapping = false;
+
+    for (let i = 0; i < input.length - 1; i++) {
+      if (input[i] > input[i + 1]) {
+        swap(input, i, i + 1);
+        swapping = true;
+      }
+    }
+  }
+  return input;
+};
+
+Question 7
+If we ran this code, how many times would this implementation of bubble sort loop over the entire input array?
+
+const bubbleSort = input => {
+  let swapping = true;
+
+  while (swapping) {
+    swapping = false;
+
+    for (let i = 0; i < input.length - 1; i++) {
+      if (input[i] > input[i + 1]) {
+        swap(input, i, i + 1);
+      }
+    }
+  }
+  
+  return input;
+};
+
+bubbleSort([3, 1, 2, 5]);
+    1 time.
+    The current code will not allow us to loop over the input array multiple times.
+    This code will only loop over the input array once because we set our while condition to false and didn’t reset it back to true after swapping.
+
+Question 8
+Finish this swap() function:
+
+const swap = (arr, indexOne, indexTwo) => {
+    const temp = arr[indexTwo];
+    arr[indexTwo] = arr[indexOne];
+    arr[indexOne] = temp;
+};

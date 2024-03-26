@@ -1,0 +1,22 @@
+RECURSIVE VS. ITERATIVE TRAVERSAL
+Recursive Case
+Now it’s time to add a recursive case. The recursive case should execute when the node has not been found and the end of the list has not been reached.
+
+Because you’ve covered both of the base cases, you can use an else statement to call your recursive case.
+
+Instructions
+Checkpoint 1 Passed
+1.
+Add an else block to .findNodeRecursively() that returns a call to .findNodeRecursively().
+
+Pass data and the next node as arguments.
+
+
+Hint
+Under the base cases, add an else block.
+
+Inside the else block, return a call to this.findNodeRecursively(). Pass data and currentNode.next as arguments.
+
+Checkpoint 2 Passed
+2.
+In index.js, change the argument passed to .findNodeRecursively() to 'Node 2'.

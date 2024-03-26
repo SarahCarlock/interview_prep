@@ -1,0 +1,137 @@
+Question 1
+Suppose we had a function that performed one step for each element in a collection of input data. What would the Big O time complexity be for this function?
+    Linear: O(N)
+    This function is performing steps in a 1:1 ration with the input data.
+    If the collection contained 10 elements, the function performs 10 steps, 100 elements would be 100 steps, and so on.
+
+Question 2
+An identical algorithm written in two different programming languages will have the same Big O runtime complexity.
+    True
+    Big O is meant to be coarse enough to communicate the efficiency of an algorithm across programming language boundaries.
+
+Question 3
+Why don’t we use time-elapsed (5 minutes, for example) as a measurement for an algorithm’s runtime?
+    Algorithms perform under many different circumstances (could be run on various CPUs, different programming languages, etc.), and time-elapsed is not coarse enough to communicate performance across those circumstances.
+    Big O notation allows us to communicate the efficiency of an algorithm without worrying about the many different circumstances in which it will be run.
+
+Question 4
+A function which only performed the operation 6 + 9 would be which Big O time complexity?
+    Constant:O(1)
+    This function would be performing a mathematical operation independent of the input.
+
+Question 5
+Suppose we had a function that took in a list of data as an input. For each element in the list, the function compared it to all of the other elements in the collection. What would the Big O time complexity be for this function?
+    Quadratic: O(N^2)
+    Imagine a list of 5 elements. For each of the 5 elements, it would need to be compared to 4 other elements. N = 5 and for each element we're comparing to N-1 times! 
+    N * (N-1) simplifies to N^2
+
+Question 6
+With Big O notation, we evaluate a function’s runtime efficiency based on the _________?
+    Size of input argument(s).
+    Big O is meant to give a worst case runtime of a function based on its input.
+
+Question 7
+Why are constant factors (such as 2N) and lower order terms (N^2 + N becomes N^2) ignored when writing Big O notation?
+    As the input to the function grows towards infinity, lower order terms and constant factors become insignificant compared to the term with the highest order of magnitude.
+    Imagine a runtime complexity of N + 10. When N is equal to 5, the constant factor appears significant, but with Big O we’re considering inputs (N) that approach infinity!
+
+Question 8
+Suppose we had a function that iterated through a collection of data once to find the minimum value, and then again in a separate iteration to find the maximum value. How would we write the Big O time complexity?
+    O(N)
+    Even though we are looping twice, these iterations are not nested. If the input is N, we can leave off the 2 which indicates the number of repeated iterations since that would be a constant factor.
+
+Question 9
+Select the correct ordering of runtime complexity, from most efficient to least efficient.
+    O(1), O(logN), O(N), O(N^2), O(2^N), O(N!)
+    From left to right: Constant, Logarithmic, Linear, Quadratic, Exponential, Factorial.
+
+
+
+
+QUIZ 2
+
+Question 1
+What is the big O runtime of this code?
+
+function findMax(list) {
+  let current = list.head;
+  let max = current.data;
+  while (current.getNextNode() !== null) {
+    current = current.getNextNode();
+    if (current.data > max) {
+      max = current.data;
+    }
+  }
+  return max;
+}
+    Linear: O(n)
+    This function visits each element in the list.
+
+Question 2
+It’s faster to remove the first element added to a stack than it is to remove the first element added to a queue.
+    False
+    Removing the first element added to a queue has a constant big O runtime, while removing the first element added to a stack has a linear big O runtime.
+
+Question 3
+Assuming there are no hashing collisions, it’s faster to retrieve an element from a hash map than it is to retrieve an element from a linked list.
+    True
+    Retrieving an element from a hash map has a constant big O runtime while removing an element from a linked list has a linear big O runtime.
+
+Question 4
+Which function has a big O runtime of O(n + m)?
+    function thirdFunc(array1, array2) {
+    for (let i = 0; i < array1.length; i++) {
+        console.log(array1[i]);
+    }
+    for (let i = 0; i < array2.length; i++) {
+        console.log(array2[i]);
+    }
+    }
+    We are iterating through each array separately, so the function’s big O runtime is the sum of each loop’s big O runtime.
+
+Question 5
+Which function has the least efficient big O runtime?
+    function funcTwo(array) {
+    for (let i = 0; i < array.length; i++) {
+        for (let j = 0; j < array.length; j++) {
+        console.log(array[i], array[i]);
+        }
+    }
+    }
+    This has a quadratic runtime of O(n^2) due to the nested for loops.
+
+Question 6
+What is the big O runtime of the following code?
+
+function printEvenPairs(array) {
+  for (let i = 0; i <= array.length; i++) {
+    for (let j = 0; j <= array.length; j++) {
+      if ((array[i] + array[j]) % 2 === 0) {
+        console.log(array[i], array[j]);
+      }
+    }
+  }
+}
+    Quadratic: O(n^2)
+    This code will loop through each element in the list, for each element in the list.
+
+Question 7
+What is the big O runtime of the following code?
+
+function makeSum(num1, num2) {
+  return num1 + num2;
+}
+    Constant:O(1)
+    The steps the function performs will not increase with larger inputs, so it has a constant big O runtime of O(1).
+
+Question 8
+Which function has the most efficient big O runtime?
+function funcThree(array) {
+    console.log(array);
+    for (let i = 0; i < 100000; i++) {
+      console.log(i);
+    }
+  }
+  funcThree() has a big O runtime of O(1). It is constant because the number of steps in the function will not increase based on the input.
+
+

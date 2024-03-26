@@ -1,0 +1,133 @@
+Question 1
+Recursion is typically more efficient than iteration.
+    False.
+    Recursion has additional overhead of function frames on the call stack.
+
+Question 2
+When analyzing the Big O runtime of recursive functions, we count the ____.
+    Relation of input to function calls.
+    The relationship of function calls to input size determines the Big O runtime.
+
+Question 3
+Which of the following describes a recursive approach?
+    To compute a factorial number, multiply the number by the factorial number minus one.
+    This is recursive because we’re describing the problem in terms of itself.
+
+Question 4
+A recursive function which has no base case, or a recursive step that does not lead to the base case, will cause what?
+    A stack overflow.
+    Recursive calls will fill the call stack until there is no room left.
+
+Question 5
+What is the call stack?
+    A data structure typically abstracted away from us which stores function calls in programs.
+    The call stack contains each recursive call with the function's execution context.
+
+Question 6
+What is the importance of the recursive step?
+    It recursively calls the function with an argument which will reach the base case.
+    The recursive step will be the equivalent of an infinite loop and cause a stack overflow if it doesn’t move closer to a base case.
+
+Question 7
+What is the purpose of the base case in a recursive function?
+    In the base case, there is no recursive function call.
+    We can think of the base case like the terminating condition of an iterative loop.
+
+Question 8
+A function will not recurse if the ________ is reached.
+    Base case.
+    The recursive step will bring us closer to the base case, where no recursion takes place.
+
+Question 9
+What is an execution context and how does it relate to recursion?
+    An execution context contains the variables within each recursive function call.
+    Separate recursive calls each have their own variables.
+
+Question 10
+What are the two main sections of a recursive function?
+    The base case and the recursive step.
+    The base case has no recursive call and the recursive step has a recursive call that moves closer to the base case.
+
+
+
+
+QUIZ 2
+
+Question 1
+The function recursiveFactorial() uses recursion to find the factorial solution to the argument passed into it. Which of the following is a realistic call stack for the call recursiveFactorial(3)?
+    recursiveFactorial(3) = 3 * recursiveFactorial(2)
+    recursiveFactorial(2) = 2 * recursiveFactorial(1)
+    recursiveFactorial(1) = 1 * recursiveFactorial(0)
+    The recursiveFactorial() function will call itself with inputs of 0, 1, 2, and 3 and multiply the solution by n+1 values. The top of the stack is the first call.
+
+Question 2
+Which of the following errors often occurs if you do not include a base case in your recursive function?
+   A stack overflow
+   If the function does not have a base case, then it may continue to call itself indefinitely. 
+
+Question 3
+Fill in the code, so recursiveSum() recursively finds the sum of a number and all positive numbers less than it.
+
+const recursiveSum = (n) => {
+  if (n === 1) {
+    return 1;
+  }
+  
+  if (n > 0){
+    return recursiveSum(n - 1) + n;
+  }
+}
+
+Question 4
+Fill in the correct conditions for the .findNodeRecursively() method.
+
+findNodeRecursively(data, currentNode = this.head) {
+    if (currentNode === null) {
+      return null;
+    } else if (currentNode.data === data) {
+      return currentNode;
+    } else {
+      return this.findNodeRecursively(data, currentNode.next);
+    }
+  }
+
+Question 5
+Fill in the .findNodeRecursively() method, so it returns the correct node when found, or null if not found.
+
+findNodeRecursively(data, currentNode = this.head) {
+    if (currentNode === null) {
+      return null;
+    } else if (currentNode.data === data) {
+      return currentNode;
+    } else {
+      return this.findNodeRecursively(data, currentNode.next);
+    }
+  }
+
+Question 6
+The code displays a recursive solution to finding a node in a linked list. Which of the following is the condition for the recursive case?
+
+findNodeRecursively(data, currentNode = this.head) {
+    if (currentNode === null) {
+      return null;
+    } else if (currentNode.data === data) {
+      return currentNode;
+    } else {
+      return this.findNodeRecursively(data, currentNode.next);
+    }
+  }
+        The recursive condition is if currentNode.data === data and currentNode === null are not true
+        The recursive case executes if the first two conditions are not true.
+
+Question 7
+Fill in the code, so recursiveFactorial() recursively finds the factorial solution to an argument and returns it.
+
+const recursiveFactorial = (n) => {
+  if (n === 0) {
+    return 1;
+  }
+  
+  if (n > 0){
+    return recursiveFactorial(n - 1) * n;
+  }
+}
