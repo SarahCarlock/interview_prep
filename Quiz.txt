@@ -1,0 +1,256 @@
+Question 1
+Correctly fill in the binarySearch() function so that it will log 7 to the console.
+
+const binarySearch = (arr, target) => {
+  let left = 0;
+  let right = arr.length;
+  
+  while (right > left) {
+    const indexToCheck = Math.floor((left + right) / 2);
+    const checking = arr[indexToCheck];
+    console.log(`indexToCheck equals: ${indexToCheck}`)
+  
+    if (checking === target) {
+      return indexToCheck;
+    } else if (target > checking) {
+      left = indexToCheck + 1;
+    } else {
+      right = indexToCheck;
+    }
+  }
+  return null;
+}
+
+const searchable = [1, 2, 7, 8, 22, 28, 41, 58, 67, 71, 94];
+const target = 58;
+
+const targetIndex = binarySearch(searchable, target);
+
+console.log(targetIndex);
+
+Question 2
+Fill in the binarySearch() function so the code will log 3 to the console.
+
+const binarySearch = (arr, target) => {
+  let left = 0;
+  let right = arr.length;
+  
+  while (right > left) {
+    const indexToCheck = Math.floor((left + right) / 2);
+    const checking = arr[indexToCheck];
+    console.log(`indexToCheck equals: ${indexToCheck}`)
+  
+    if (checking === target) {
+      return indexToCheck;
+    } else if (target > checking) {
+      left = indexToCheck + 1;
+    } else {
+      right = indexToCheck;
+    }
+  }
+  return null;
+}
+
+const searchable = [1, 2, 7, 8, 22, 28, 41, 58, 67, 71, 94];
+const target = 8;
+
+const targetIndex = binarySearch(searchable, target);
+
+console.log(targetIndex)
+
+Question 3
+The provided binarySearch() function accepts an array of numbers and a value as arguments and then returns the index of the value if it is present in the array. Why will this call to binarySearch() not execute correctly?
+
+const searchable = [1, 2, 18, 7, 8, 28, 41, 58, 12, 67, 71, 94];
+const target = 23;
+
+console.log(binarySearch(searchable, target))
+  The searchable array is not sorted from least to greatest
+  the input array is not sorted from least to greatest
+
+Question 4
+There is an error in the while condition of this binarySearch() function. Which answer best describes what is wrong with the condition?
+
+const binarySearch = (arr, target) => {
+  let left = 0;
+  let right = arr.length;
+  
+  while (right < left) {
+    const indexToCheck = Math.floor((left + right) / 2);
+    const checking = arr[indexToCheck];
+    console.log(`indexToCheck equals: ${indexToCheck}`)
+  
+    if (checking === target) {
+      return indexToCheck;
+    } else if (target > checking) {
+      left = indexToCheck + 1;
+    } else {
+      right = indexToCheck;
+    }
+  }
+  return null;
+}
+  The condition should be changed to: right > left. In words, the while loop should continue to execute if the right index is greater than the left index.
+  the code block shown will always return null, because the initial values of left and right make the condition False.
+
+Question 5
+The provided binarySearch() function accepts an array of numbers and a value as arguments and then returns the index of the value if it is present in the array. The function will return null if a value is not in the array. What will the following code log to the console?
+
+const searchable = [1, 2, 7, 8, 22, 28, 41, 58, 67, 71, 94];
+const target = 7;
+
+console.log(binarySearch(searchable, target))
+  2
+  the target value, 7, is in the second position of the array.
+
+Question 6
+Which of the following is NOT correct about the purpose of the if / else if / else block in the binarySearch() function?
+
+const binarySearch = (arr, target) => {
+  let left = 0;
+  let right = arr.length;
+  
+  while (right > left) {
+    const indexToCheck = Math.floor((left + right) / 2);
+    const checking = arr[indexToCheck];
+    console.log(`indexToCheck equals: ${indexToCheck}`)
+  
+    if (checking === target) {
+      return indexToCheck;
+    } else if (target > checking) {
+      left = indexToCheck + 1;
+    } else {
+      right = indexToCheck;
+    }
+  }
+  return null;
+}
+  The if / else if / else block returns the target value in the input array if the current value is equal to the target value.
+  the if-else if-else block returns the INDEX of the target value in the input array if the current value is equal to the target value. It does NOT return the actual target value.
+
+Question 7
+Fill in the binarySearch() function so the code will log 1 to the console.
+
+const binarySearch = (arr, target) => {
+  let left = 0;
+  let right = arr.length;
+  
+  while (right > left) {
+    const indexToCheck = Math.floor((left + right) / 2);
+    const checking = arr[indexToCheck];
+  
+    if (checking === target) {
+      return indexToCheck;
+    } else if (target > checking) {
+      left = indexToCheck + 1;
+    } else {
+      right = indexToCheck;
+    }
+  }
+  return null;
+}
+
+const searchable = [1, 2, 7, 8, 22, 28, 41, 58, 67, 71, 94];
+const target = 2;
+
+const targetIndex = binarySearch(searchable, target);
+
+console.log(targetIndex)
+
+Question 8
+Which of the following best describes the purpose of the following two lines in the binarySearch() function?
+
+const indexToCheck = Math.floor((left + right) / 2);
+const checking = arr[indexToCheck];
+
+const binarySearch = (arr, target) => {
+  let left = 0;
+  let right = arr.length;
+  
+  while (right > left) {
+    const indexToCheck = Math.floor((left + right) / 2);
+    const checking = arr[indexToCheck];
+  
+    if (checking === target) {
+      return indexToCheck;
+    } else if (target > checking) {
+      left = indexToCheck + 1;
+    } else {
+      right = indexToCheck;
+    }
+  }
+  return null;
+}
+  The first line sets the index to check in the input array. The second line grabs the value to check from the input array.
+  the Math.floor((left + right) / 2) statement will find the floor of the average of the left and right indices. In other words, the index in the middle of the two values.
+
+
+
+
+QUIZ 2
+
+Question 1
+Which of these is NOT true about our JavaScript binary tree implementation?
+  The height of a binary tree can be determined from the top node’s depth.
+  The depth of the top root node is always 1, and doesn’t determine the height of the tree.
+
+Question 2
+The following code is a JavaScript class implementation of retrieving a binary tree node by value. Fill in the code with the correct if statements and return value.
+
+getNodeByValue(value) {
+    if (this.value === value) {
+      return this;
+    } else if ((this.left) && (value < this.value)) {
+        return this.left.getNodeByValue(value);
+    } else if (this.right) {
+        return this.right.getNodeByValue(value);
+    } else {
+      return null;
+    }
+  }
+
+Question 3
+Which of these depth-traversal methods returns a sorted data list in a binary tree?
+  Inorder
+
+Question 4
+The following data is added to the binary tree in this order:
+
+13, 1, 15, 19, 16, 8
+
+Construct a binary tree model for it and fill in the blanks with the correct values.
+
+    13
+   /  \
+  1   15
+   \    \
+    8   19
+       /
+      16
+
+Question 5
+The following values are added to a binary tree in this order:
+
+13, 0, 2, 16, 9, 19
+
+Which of the following binary trees represent the data list accurately?
+        13
+      /  \
+    0    16
+      \    \
+      2   19
+        \
+        9
+  Excellent work figuring out the binary tree model.
+
+Question 6
+The following code is a JavaScript snippet to insert a value into a binary tree. Fill in the code with the correct if statements for adding a value in the left subtree.
+
+if (value < this.value) {
+  if (!this.left) {
+    this.left = new BinaryTree(value, this.depth + 1, 'left');
+  } else {
+    this.left.insert(value);
+    }
+  // more statements
+}

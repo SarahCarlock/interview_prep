@@ -1,0 +1,79 @@
+BINARY SEARCH TREES: JAVASCRIPT
+Retrieve a Node by Value
+Recall that a binary search tree provides a fast and efficient way to store and retrieve values. Like with .insert(), the procedure to retrieve a tree node by its value is recursive. We want to traverse the correct branch of the tree by comparing the target value to the current node’s value.
+
+The base case for our recursive method is that when the values match, we return the current node. The recursive step is to call itself from an existing left or right child node with the value.
+
+If target value is the same as the current node value
+  Return the current node
+Else
+  If target value is less than the root node's value and there is a left child node
+    Recursively search from the left child node
+  Else if there is a right child node
+    Recursively search from the right child node
+Given the following tree:
+
+        100
+       /   \
+      50    125
+     /  \
+    25  75
+To retrieve 75, the algorithm would proceed as follows:
+
+At root node, 75 < 100 and there is a left child
+
+        100
+       /   \
+ ==>  50    125
+     /  \
+    25  75
+
+At the node 50, 75 > 50 and there is a right child
+
+        100
+       /   \
+      50    125
+     /  \
+    25  75 <== 
+
+Node 75 = 75, return this node
+Instructions
+Checkpoint 1 Passed
+1.
+Define a new method, .getNodeByValue(), below the .insert() method that takes one parameter, value.
+
+Checkpoint 2 Passed
+2.
+The first thing we do is to compare the target value with the root node’s value. If they are the same, return the node. This is the base case.
+
+
+Stuck? Get a hint
+Checkpoint 3 Passed
+3.
+If the target value cannot be found in the root node, we want to navigate further down the binary tree. We start with the left child node if it exists and recursively search in the left subtree. To traverse the left tree, we need to make sure the target value is less than the root node’s value.
+
+Write an else if statement that checks:
+
+if the left child node exists, and
+if the target value is less than this.value
+Inside the else if block, return with a call to .getNodeByValue() method of the left child node.
+
+Checkpoint 4 Passed
+4.
+Next, we want to implement the recursive step for the right child node if it exists.
+
+Write an else if block that:
+
+checks if the right child node exists, and
+return with a call to .getNodeByValue() method for the right child node if it exists
+Checkpoint 5 Passed
+5.
+If the target value does not exist in the binary tree, we should return null.
+
+Create an else block that returns null.
+
+Checkpoint 6 Passed
+6.
+Open up script.js. Search for the value 75 in the BinaryTree object already created for you and display the contents of the returned tree node.
+
+Search for a non-existent value of 55 in the same BinaryTree object and display the returned value.

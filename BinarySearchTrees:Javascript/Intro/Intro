@@ -1,0 +1,30 @@
+BINARY SEARCH TREES: JAVASCRIPT
+Introduction
+A binary tree is an efficient data structure for fast data storage and retrieval due to its O(log N) runtime. It is a specialized tree data structure that is made up of a root node, and at most two child branches or subtrees. Each child node is itself a binary tree.
+
+Each node has the following properties:
+
+data
+a depth value, where depth of 1 indicates the top level of the tree and a depth greater than 1 is a level somewhere lower in the tree
+a left pointer that points to a left child which is itself a binary tree, and must have a data lesser than the root node’s data
+a right pointer that points to a right child which is itself a binary tree, and must have a data greater than the root node’s data
+Sample Binary Tree
+
+Instructions
+Checkpoint 1 Passed
+1.
+We have provided an empty BinaryTree class in BinaryTree.js.
+
+Define a constructor that takes two parameters: value and depth where value is the data contained within a binary tree and depth indicates the level of the tree
+Assign a default depth of 1 to depth in the parameter list
+Declare an instance property, value, and assign this to the parameter value.
+Declare another instance property, depth, and assign this to the parameter depth.
+Checkpoint 2 Passed
+2.
+Define left and right instance properties to represent pointers to the left and right binary tree nodes and assign each one to null.
+
+Checkpoint 3 Passed
+3.
+Open up script.js. Instantiate a BinaryTree class with an initial value of 15 and assign it to a const variable bt.
+
+Display the content of the binary tree, bt.

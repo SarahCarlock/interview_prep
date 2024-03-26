@@ -1,0 +1,26 @@
+BINARY SEARCH: JAVASCRIPT
+Checking the Middle Index
+Let’s consider how to implement an approach to check whether the value at indexToCheck is equal to the target value. Below, we use pseudocode to display two additional steps that will check if the target value is found.
+
+function binarySearch (arr, target)
+  left = 0
+  right = length of arr
+
+  indexToCheck = the floor integer of (left + right) / 2
+    
+  checking = value of arr at indexToCheck
+
+  if checking is the target
+    return indexToCheck
+In the example above, we set a variable called checking to the value in arr at the position indexToCheck. Then, we return the index if it is equal to the target value.
+
+Instructions
+Checkpoint 1 Passed
+1.
+Create a constant called checking and set it equal to the value at indexToCheck.
+
+
+Stuck? Get a hint
+Checkpoint 2 Passed
+2.
+Create an if statement that returns indexToCheck if checking is equal to target. If your solution is implemented correctly, the script should log 5 to the console.

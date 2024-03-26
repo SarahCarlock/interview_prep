@@ -1,0 +1,112 @@
+Question 1
+What would make a deep tree?
+    Many parent-child connections with few sibling nodes. A new leve is created each time a node becomes a parent(adds a child where is had non before.) A tree with many levels is a deep tree.
+
+Question 2
+A tree node which is held as a reference by another tree node is called what?
+    A child node. Trees are composed of nodes that reference other nodes. The nodes being referenced are known as children or child nodes.
+
+Question 3
+What would make a wide tree?
+    Many child nodes per parent node. We often think of trees “growing” down from a single root node. The more children a node has, the wider the tree will become.
+
+Question 4
+Tree nodes which have no references to other nodes (children) are known as what?
+    Leaf nodes. We know when we’ve reached the “bottom” of a tree when a node has no references to other nodes, also known as children.
+
+Question 5
+Tree nodes which share a parent node are called what?
+    Siblings. When two nodes share the same parent, they are known as siblings. They are also on the same level of the tree!
+
+Question 6
+In a binary search tree, values in the left child are _____ than their parent, and values in the right child are _____ than their parent.
+    Lesser than; greater than. A binary search tree allows for efficient search because at each level half of the options are discarded.
+
+Question 7
+A tree node which holds references to other tree nodes is called what?
+    A parent node. Trees are composed of nodes which reference other nodes. The nodes which reference other nodes are known as parent nodes.
+
+Question 8
+A tree node without a parent is called what?
+    Root. Root nodes have no parent, meaning there is no node which references them as a child node.
+
+
+
+
+
+Quiz
+Question 1
+Fill in the tree node data based on the breadth-first traversal output as follows:
+
+15, 16, 3, 12, 6, 0, 10, 3, 16, 4
+    15
+    -- 16
+    -- -- 6
+    -- -- 0
+    -- 3
+    -- -- 10
+    -- -- 3
+    -- 12
+    -- -- 16
+    -- -- 4
+
+Question 2
+Select the statement that is NOT true about our implementation of .removeChild().
+
+removeChild(childToRemove) {
+    const length = this.children.length;
+    this.children = this.children.filter(child => {
+      return childToRemove instanceof TreeNode
+      ? child !== childToRemove
+      : child.data !== childToRemove;
+    });
+
+    if (length === this.children.length) {
+      this.children.forEach(child => child.removeChild(childToRemove));
+    }
+  }
+    If we have duplicate data in our tree, .removeChild() will not remove the duplicate.
+    The .filter() method takes care of removing duplicate values in an array.
+
+Question 3
+Fill in the missing code to remove a child from a tree.
+
+removeChild(childToRemove) {
+  const length = this.children.length;
+  this.children = this.children.filter(child => {
+    return childToRemove instanceof TreeNode
+  ? child !== childToRemove
+  : child.data !== childToRemove;
+  });
+
+  if (length === this.children.length) {
+    this.children.forEach(child => child.removeChild(childToRemove));
+  }
+}
+
+Question 4
+Fill in the code to add a child to a tree.
+
+addChild(child) {
+  if (child instanceof TreeNode) {
+    this.children.push(child);
+  } else {
+    this.children.push(new TreeNode(child));
+  }
+}
+
+Question 5
+Which of the following can be modeled with a Tree data structure?
+    A computer file system
+
+Question 6
+What would be the expected result of traversing the following tree using depth-first?
+
+15
+-- 5
+-- -- 12
+-- 10
+-- -- 2
+-- 18
+-- -- 10
+    15, 5, 12, 10, 2, 18, 10
